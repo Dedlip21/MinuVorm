@@ -13,6 +13,9 @@ namespace MinuVorm
         Button[] btn = new Button[4];
         string[] texts = new string[4];
         TableLayoutPanel tlp = new TableLayoutPanel();
+
+        Button btn_tabel;
+        int btn_w, btn_h;
         public MyForm()
         {
 
@@ -50,6 +53,41 @@ namespace MinuVorm
         {
             this.tlp.ColumnCount = kohad;
             this.tlp.RowCount = read;
+            this.tlp.ColumnStyles.Clear();
+            this.tlp.RowStyles.Clear();
+            
+
+            for (int i = 0; i < read; i++)
+            {
+                this.tlp.RowStyles.Add(new RowStyle(SizeType.Percent));
+                this.tlp.RowStyles[i].Height = 100 / read;
+            }
+
+            for (int j = 0; j < kohad; j++)
+            {
+                this.tlp.ColumnStyles.Add(new ColumnStyle(SizeType.Percent));
+                this.tlp.ColumnStyles[j].Width = 100 / kohad;
+            }
+
+            this.Size = new System.Drawing.Size(kohad * 100, read * 100);
+            for (int r = 0; r < read; r++)
+            {
+                for (int k = 0; k < kohad; k++)
+                {
+                    btn_tabel = new Button
+                    {
+                        Text = string.Format("{0}{1}", r, k),
+                        Name = string.Format("btn_{0}{1}", r, k),
+                        Dock = DockStyle.Fill
+                    };
+                    this.tlp.Controls.Add(btn_tabel, r, k);
+                }
+            }
+            btn_w = (int)(100 / kohad);
+            btn_h = (int)(100 / read);
+            this.tlp.Dock = DockStyle.Fill;
+            this.tlp.Size = new System.Drawing.Size(tlp.ColumnCount * btn_w, tlp.RowCount * btn_h);
+            this.Controls.Add(tlp);
         }
 
         private void MyForm_Click(object sender, EventArgs e)

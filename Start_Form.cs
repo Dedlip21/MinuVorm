@@ -18,17 +18,21 @@ namespace MinuVorm
             };
             Start_btn.Click += Start_btn_Click;
             this.Controls.Add(Start_btn);
+
             Button Start_btn_2 = new Button
             {
                 Text = "Veel aken",
-                Location = new System.Drawing.Point(100, 100);
-                this.Controls.Add(Start_btn_2);
+                Location = new System.Drawing.Point(100, 100)
+            };
+            this.Controls.Add(Start_btn_2);
             Start_btn_2.Click += Start_btn_2_Click;
-    }
+        }
 
         private void Start_btn_2_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            MyForm uus_aken = new MyForm(2, 2);
+            uus_aken.StartPosition = FormStartPosition.CenterScreen;
+            uus_aken.ShowDialog();
         }
 
         private void Start_btn_Click(object sender, EventArgs e)
@@ -37,5 +41,6 @@ namespace MinuVorm
             uus_aken.StartPosition = FormStartPosition.CenterScreen;
             uus_aken.ShowDialog();
         }
+
     }
 }
